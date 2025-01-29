@@ -9,7 +9,6 @@ def decode(n):
         n -= 256**length
         length += 1
 
-    print(n)
     res = ""
     for i in range(length-1, -1, -1):
         tmp = (int((n//(256**i)) % 256))
@@ -25,7 +24,6 @@ def encode(program):
     length = len(program)
 
     for i in range(length-1, -1, -1):
-        print(i)
         res += (256 ** (length - i - 1)) * (ord(program[i]) + 1)
 
     return res
@@ -34,5 +32,5 @@ def encode(program):
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         estr = encode(sys.argv[1])
-        print(estr)
-        print(decode(estr))
+        print(f'encoded: {estr}')
+        print(f'decoded: {decode(estr)}')
