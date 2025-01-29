@@ -8,25 +8,31 @@ def decode(n):
     while n >= 256**length:
         n -= 256**length
         length += 1
+
+    print(n)
     res = ""
     for i in range(length-1, -1, -1):
-        tmp = chr(int((n//(256**i)) % 256))
-        res += tmp
+        tmp = (int((n//(256**i)) % 256))
+        res += chr(tmp)
 
     return res
 
 
 def encode(program):
+    length = 0
+
     res = 0
     length = len(program)
 
     for i in range(length-1, -1, -1):
-        res += (2 * 256**i) + ord(program[i])
+        print(i)
+        res += (256 ** (length - i - 1)) * (ord(program[i]) + 1)
 
     return res
 
 
 if __name__ == "__main__":
-    encoded = encode("Hi, this is a test!")
-    print(encoded)
-    print(decode(encoded))
+    if len(sys.argv) == 2:
+        estr = encode(sys.argv[1])
+        print(estr)
+        print(decode(estr))
